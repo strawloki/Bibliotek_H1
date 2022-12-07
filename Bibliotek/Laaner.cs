@@ -4,18 +4,18 @@ using System.Text;
 
 namespace Bibliotek
 {
-    class Laaner
+    class Laaner : Person
     {
         private int laanerNummer;
-        private string laanerNavn;
+        //private string laanerNavn;
 
-        public string LaanerNavn { get { return laanerNavn; } }
+        public string LaanerNavn { get { return base.Navn; } }
         public int LaanerNummer { get { return laanerNummer; } }
 
-        public Laaner(int nummer, string navn)
+        public Laaner(int nummer, string navn, string email) : base(navn, email)
         {
             laanerNummer = nummer;
-            laanerNavn = navn;
+           
         }
     }
 }

@@ -19,9 +19,9 @@ namespace Bibliotek
             Console.WriteLine($"Velkommen til {biblioteksNavn} - datoen idag er {DateTime.Now}");
         }
 
-        public string OpretLaaner(int number, string name)
+        public string OpretLaaner(int number, string name, string email)
         {
-            laanerList.Add(new Laaner(number, name));
+            laanerList.Add(new Laaner(number, name, email));
 
             return String.Format($"Oprettet en ny laaner med navnet {name} og nummer {number}.");
         }
@@ -31,7 +31,7 @@ namespace Bibliotek
             foreach(Laaner lan in laanerList)
             {
                 if (lan.LaanerNummer == number)
-                    result = String.Format($"Laanenummer: {lan.LaanerNummer} - Navn: {lan.LaanerNavn} er laner hos {biblioteksNavn}.");
+                    result = String.Format($"Laanenummer: {lan.LaanerNummer} - Navn: {lan.Navn} er laner hos {biblioteksNavn}.");
             }
             return result;
         }

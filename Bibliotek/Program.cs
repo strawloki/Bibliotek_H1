@@ -9,9 +9,9 @@ namespace Bibliotek
             Bibliotek bibliotek = new Bibliotek("Sonderborg Bibliotek");
             bibliotek.HentBibliotek();
 
-            bibliotek.OpretLaaner(1, "Steven");
-            bibliotek.OpretLaaner(2, "Stewart");
-            bibliotek.OpretLaaner(3, "Ian");
+            bibliotek.OpretLaaner(1, "Steven", "steven@shitmail.com");
+            bibliotek.OpretLaaner(2, "Stewart", "stewart@shitmail.com");
+            bibliotek.OpretLaaner(3, "Ian", "ian@shitmail.com");
             //Console.WriteLine(bibliotek.HentAlleLaanere());
 
             while (true)
@@ -85,13 +85,16 @@ namespace Bibliotek
                 Console.Write("Indast laaners navn: ");
                 string navn = Console.ReadLine();
 
+                Console.Write("Indast laaners email addresse: ");
+                string email = Console.ReadLine();
+
                 Console.Write("\nIndast laaners nummer: ");
                 string numStr = Console.ReadLine();
 
                 int num = -1;
                 if (Int32.TryParse(numStr, out num))
                 {
-                    Console.WriteLine(bib.OpretLaaner(num, navn));
+                    Console.WriteLine(bib.OpretLaaner(num, navn, email));
                     valueInputted = true;
 
                 }
