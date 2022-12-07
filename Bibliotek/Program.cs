@@ -10,7 +10,9 @@ namespace Bibliotek
             bibliotek.HentBibliotek();
 
             bibliotek.OpretLaaner(1, "Steven");
-            Console.WriteLine(bibliotek.HentLaaner(1));
+            bibliotek.OpretLaaner(2, "Stewart");
+            bibliotek.OpretLaaner(3, "Ian");
+            Console.WriteLine(bibliotek.HentAlleLaanere());
             
         }
     }

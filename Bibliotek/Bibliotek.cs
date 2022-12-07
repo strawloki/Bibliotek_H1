@@ -19,9 +19,11 @@ namespace Bibliotek
             Console.WriteLine($"Velkommen til {biblioteksNavn} - datoen idag er {DateTime.Now}");
         }
 
-        public void OpretLaaner(int number, string name)
+        public string OpretLaaner(int number, string name)
         {
             laanerList.Add(new Laaner(number, name));
+
+            return String.Format($"Oprettet en ny laaner med navnet {name} og nummer {number}.");
         }
         public string HentLaaner(int number)
         {
@@ -33,5 +35,16 @@ namespace Bibliotek
             }
             return result;
         }
+
+        public string HentAlleLaanere()
+        {
+            string result = "";
+            foreach(Laaner lan in laanerList)
+            {
+                result = result + String.Format($"Navn: {lan.LaanerNavn} Nummer: {lan.LaanerNummer}, Bibliotek: {biblioteksNavn}\n");
+            }
+            return result;
+        }
+
     }
 }
