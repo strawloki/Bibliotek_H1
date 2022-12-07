@@ -6,7 +6,8 @@ namespace Bibliotek
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Bibliotek bibliotek = new Bibliotek("Sonderborg Bibliotek");
+            bibliotek.HentBibliotek();
         }
     }
 }
