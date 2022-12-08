@@ -7,7 +7,7 @@ namespace Bibliotek
         static void Main(string[] args)
         {
             Bibliotek bibliotek = new Bibliotek("Sonderborg Bibliotek");
-            bibliotek.HentBibliotek();
+            
 
             bibliotek.OpretLaaner(1, "Steven", "steven@shitmail.com");
             bibliotek.OpretLaaner(2, "Stewart", "stewart@shitmail.com");
@@ -21,7 +21,7 @@ namespace Bibliotek
                 switch (valg)
                 {
                     case 1:
-                        bibliotek.HentBibliotek();
+                        OutputMessage(bibliotek.HentBibliotek());
                         break;
 
                     case 2:
@@ -30,7 +30,7 @@ namespace Bibliotek
 
                     case 3:
                         Console.WriteLine("Laanere i biblioteket:");
-                        Console.WriteLine(bibliotek.HentAlleLaanere());
+                        OutputMessage(bibliotek.HentAlleLaanere());
                         break;
 
                     case 4:
@@ -68,7 +68,6 @@ namespace Bibliotek
 
                     else
                         choice = true;
-
                 }
                 else
                     Console.WriteLine("Uglydig mulighed. Prov igen.");
@@ -88,19 +87,25 @@ namespace Bibliotek
                 Console.Write("Indast laaners email addresse: ");
                 string email = Console.ReadLine();
 
-                Console.Write("\nIndast laaners nummer: ");
+                Console.Write("Indast laaners nummer: ");
                 string numStr = Console.ReadLine();
 
                 int num = -1;
                 if (Int32.TryParse(numStr, out num))
                 {
-                    Console.WriteLine(bib.OpretLaaner(num, navn, email));
+                    OutputMessage(bib.OpretLaaner(num, navn, email));
                     valueInputted = true;
-
                 }
                 else Console.WriteLine("Ugyldig mulighed. Du skal indtaste kun en tal.");
-
             }
+        }
+        static void OutputMessage(string message)
+        {
+            Console.Clear();
+            Console.Write("\n");
+            Console.WriteLine(message);
+            Console.Write("\n");
+
         }
     }
 }
