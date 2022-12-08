@@ -8,6 +8,7 @@ namespace Bibliotek
     {
         string biblioteksNavn;
         List<Laaner> laanerList = new List<Laaner>();
+        List<Book> books = new List<Book>();
 
         public Bibliotek(string navn)
         {
@@ -31,7 +32,7 @@ namespace Bibliotek
             foreach(Laaner lan in laanerList)
             {
                 if (lan.LaanerNummer == number)
-                    result = String.Format($"Laanenummer: {lan.LaanerNummer} - Navn: {lan.Navn} er laner hos {biblioteksNavn}.");
+                    result = String.Format($"Laanenummer: {lan.LaanerNummer} - Navn: {lan.Navn} er laner hos {biblioteksNavn} og har lant {lan.BooksLoaned()} boger.");
             }
             return result;
         }
@@ -41,9 +42,23 @@ namespace Bibliotek
             string result = "";
             foreach(Laaner lan in laanerList)
             {
-                result += String.Format($"Navn: {lan.LaanerNavn} Nummer: {lan.LaanerNummer}, Bibliotek: {biblioteksNavn}\n");
+                result += String.Format($"Navn: {lan.LaanerNavn} Nummer: {lan.LaanerNummer}, Bibliotek: {biblioteksNavn}\nBoger Lant: {lan.BooksLoaned()}\n");
             }
             return result;
+        }
+
+        public string UdskrivBoger()
+        {
+            string result = "";
+            foreach(Book book in books)
+            {
+                result += String.Format($"Titel: {book.Title}\tForfatter: {book.AuthorName}\tISBN: {book.ISBN}\n");
+            }
+            return result;
+        }
+        public void TilfojBog(string title, string auth, string isbn)
+        {
+            books.Add(new Book(title, auth, isbn));
         }
 
     }

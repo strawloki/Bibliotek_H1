@@ -12,6 +12,10 @@ namespace Bibliotek
             bibliotek.OpretLaaner(1, "Steven", "steven@shitmail.com");
             bibliotek.OpretLaaner(2, "Stewart", "stewart@shitmail.com");
             bibliotek.OpretLaaner(3, "Ian", "ian@shitmail.com");
+
+            bibliotek.TilfojBog("To kill a mockingbird","Can't remember","dnsiuwnfiudnsi1432");
+            bibliotek.TilfojBog("Programming for dummies", "A lesser dummy", "fdjiwfiuwbpi321");
+            bibliotek.TilfojBog("McDonald's Sonderborg menu", "Old McDonald", "nowqtnibg326");
             //Console.WriteLine(bibliotek.HentAlleLaanere());
 
             while (true)
@@ -32,8 +36,11 @@ namespace Bibliotek
                         Console.WriteLine("Laanere i biblioteket:");
                         OutputMessage(bibliotek.HentAlleLaanere());
                         break;
-
                     case 4:
+                        OutputMessage(bibliotek.UdskrivBoger());
+                        break;
+
+                    case 5:
                         Environment.Exit(0);
                         break;
                 }
@@ -48,13 +55,13 @@ namespace Bibliotek
             bool choice = false;
             while (!choice)
             {
-
                 Console.Write("---------------------------------------------------\n");
                 Console.Write("Velkommen til bibliotekens program. Du kan vaelge folgende:\n");
                 Console.Write("1. Vis bibliotekens navn og dato\n");
                 Console.Write("2. Opret en ny laaner\n");
                 Console.Write("3. Udskriv laanere\n");
-                Console.Write("4. Afsult programmet\n");
+                Console.Write("4. Udskriv boger der ligger ind i biblioteket\n");
+                Console.Write("5. Afsult programmet\n");
                 Console.Write("---------------------------------------------------\n");
                 Console.Write("Indtast din valg: ");
 
@@ -63,7 +70,7 @@ namespace Bibliotek
 
                 if (Int32.TryParse(strValg, out valg))
                 {
-                    if (valg < 1 || valg > 4)
+                    if (valg < 1 || valg > 5)
                         Console.WriteLine("Uglydig mulighed. Prov igen.");
 
                     else
