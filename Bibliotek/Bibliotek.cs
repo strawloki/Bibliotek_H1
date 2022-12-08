@@ -42,7 +42,7 @@ namespace Bibliotek
             string result = "";
             foreach(Laaner lan in laanerList)
             {
-                result += String.Format($"Navn: {lan.LaanerNavn} Nummer: {lan.LaanerNummer}, Bibliotek: {biblioteksNavn}\nBoger Lant: {lan.BooksLoaned()}\n");
+                result += String.Format($"Navn: {lan.LaanerNavn} Nummer: {lan.LaanerNummer}, Bibliotek: {biblioteksNavn}, Boger Lant: {lan.BooksLoaned()}\n");
             }
             return result;
         }
@@ -59,6 +59,35 @@ namespace Bibliotek
         public void TilfojBog(string title, string auth, string isbn)
         {
             books.Add(new Book(title, auth, isbn));
+        }
+
+        public Book FindBook(string isbn)
+        {
+            Book book = null;
+            foreach(Book bk in books)
+            {
+                if(bk.ISBN == isbn)
+                {
+                    book = bk;
+                    break;
+                }
+
+            }
+            return book;
+        }
+
+        public bool LoanBook(Book book, int laanerId)
+        {
+            foreach(Laaner ln in laanerList)
+            {
+                if(ln.LaanerNummer == laanerId)
+                {
+                    ln.LoanBook(book);
+                    return true;
+                }
+            }
+            return false;
+
         }
 
     }

@@ -13,9 +13,9 @@ namespace Bibliotek
             bibliotek.OpretLaaner(2, "Stewart", "stewart@shitmail.com");
             bibliotek.OpretLaaner(3, "Ian", "ian@shitmail.com");
 
-            bibliotek.TilfojBog("To kill a mockingbird","Can't remember","dnsiuwnfiudnsi1432");
-            bibliotek.TilfojBog("Programming for dummies", "A lesser dummy", "fdjiwfiuwbpi321");
-            bibliotek.TilfojBog("McDonald's Sonderborg menu", "Old McDonald", "nowqtnibg326");
+            bibliotek.TilfojBog("To kill a mockingbird","Can't remember","1000");
+            bibliotek.TilfojBog("Programming for dummies", "A lesser dummy", "2000");
+            bibliotek.TilfojBog("McDonald's Sonderborg menu", "Old McDonald", "3000");
             //Console.WriteLine(bibliotek.HentAlleLaanere());
 
             while (true)
@@ -39,13 +39,49 @@ namespace Bibliotek
                     case 4:
                         OutputMessage(bibliotek.UdskrivBoger());
                         break;
-
                     case 5:
+                        LoanBookPrompt(bibliotek);
+                        break;
+
+                    case 6:
                         Environment.Exit(0);
                         break;
                 }
             }
 
+        }
+
+        private static void LoanBookPrompt(Bibliotek bib)
+        {
+          
+            Console.Write(bib.UdskrivBoger());
+
+            Console.WriteLine("Indast ISBN af bogen du vil gerne lan: ");
+            string isbnStr = Console.ReadLine();
+
+            Book toLoan = bib.FindBook(isbnStr);
+            if (toLoan == null)
+                Console.WriteLine("\nBogen med dette ISBN kunne ikke findes.\n");
+            else
+            {
+                bool lan = false;
+                while (!lan)
+                {
+                    Console.WriteLine("Indast en laaner nr.: ");
+                    string lanStr = Console.ReadLine();
+                    int lanId;
+
+                    if(Int32.TryParse(lanStr, out lanId))
+                    {
+                        lan = true;
+                        if(bib.HentLaaner(lanId) != "Ikke fundet")
+                        {
+                            string msg = bib.LoanBook(toLoan, lanId) is true ? "Successfully loaned the book" : "failed to loan the book.";
+                            Console.WriteLine(msg);
+                        }
+                    }
+                }
+            }
         }
 
         static int BibliotekPrompt()
@@ -61,7 +97,8 @@ namespace Bibliotek
                 Console.Write("2. Opret en ny laaner\n");
                 Console.Write("3. Udskriv laanere\n");
                 Console.Write("4. Udskriv boger der ligger ind i biblioteket\n");
-                Console.Write("5. Afsult programmet\n");
+                Console.Write("5. Lan en bog\n");
+                Console.Write("6. Afsult programmet\n");
                 Console.Write("---------------------------------------------------\n");
                 Console.Write("Indtast din valg: ");
 
@@ -70,7 +107,7 @@ namespace Bibliotek
 
                 if (Int32.TryParse(strValg, out valg))
                 {
-                    if (valg < 1 || valg > 5)
+                    if (valg < 1 || valg > 6)
                         Console.WriteLine("Uglydig mulighed. Prov igen.");
 
                     else
