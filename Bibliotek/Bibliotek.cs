@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bibliotek
+namespace BibliotekProjekt
 {
-    class Bibliotek
+    public class Bibliotek
     {
         string biblioteksNavn;
         List<Laaner> laanerList = new List<Laaner>();

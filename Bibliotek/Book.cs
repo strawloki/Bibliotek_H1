@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Bibliotek
+namespace BibliotekProjekt
 {
-    class Book
+    public class Book
     {
         string title, authName, isbn;
         DateTime loanDate;

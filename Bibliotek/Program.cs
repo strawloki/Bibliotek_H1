@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bibliotek
+namespace BibliotekProjekt
 {
     class Program
     {
