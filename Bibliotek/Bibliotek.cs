@@ -28,7 +28,7 @@ namespace Bibliotek
         }
         public string HentLaaner(int number)
         {
-            string result = "Ikke fundet";
+            string result = "Ikke fundet"; //default hvis laaner id kan ikke findes
             foreach(Laaner lan in laanerList)
             {
                 if (lan.LaanerNummer == number)
@@ -76,13 +76,13 @@ namespace Bibliotek
             return book;
         }
 
-        public bool LoanBook(Book book, int laanerId)
+        public bool LoanBook(Book book, int laanerId) //metode som kaldes pa en BIBLIOTEK instance
         {
             foreach(Laaner ln in laanerList)
             {
                 if(ln.LaanerNummer == laanerId)
                 {
-                    ln.LoanBook(book);
+                    ln.LoanBook(book); //hvis laaner findes, bogen er lant pa dette laaner id
                     return true;
                 }
             }

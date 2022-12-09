@@ -19,7 +19,7 @@ namespace Bibliotek
             this.email = email;
         }
 
-        public void LoanBook(Book book)
+        public void LoanBook(Book book) //metode som har direkt adgang til en persons liste af lant boger
         {
             book.LoanDate = DateTime.Now;
             bookList.Add(book);

@@ -6,21 +6,21 @@ namespace Bibliotek
     {
         static void Main(string[] args)
         {
-            Bibliotek bibliotek = new Bibliotek("Sonderborg Bibliotek");
+            Bibliotek bibliotek = new Bibliotek("Sonderborg Bibliotek"); //Opret bibliotek objekt
             
 
             bibliotek.OpretLaaner(1, "Steven", "steven@shitmail.com");
-            bibliotek.OpretLaaner(2, "Stewart", "stewart@shitmail.com");
+            bibliotek.OpretLaaner(2, "Stewart", "stewart@shitmail.com"); //Opret flere laanere ind i bibliotek objektet
             bibliotek.OpretLaaner(3, "Ian", "ian@shitmail.com");
 
             bibliotek.TilfojBog("To kill a mockingbird","Can't remember","1000");
-            bibliotek.TilfojBog("Programming for dummies", "A lesser dummy", "2000");
+            bibliotek.TilfojBog("Programming for dummies", "A lesser dummy", "2000"); //Opret flere boger ind i bibliotek objektet
             bibliotek.TilfojBog("McDonald's Sonderborg menu", "Old McDonald", "3000");
             //Console.WriteLine(bibliotek.HentAlleLaanere());
 
             while (true)
             {
-                int valg = BibliotekPrompt();
+                int valg = BibliotekPrompt(); //Returnere en int som er brugerens valg fra opstart menuen
 
                 switch (valg)
                 {
@@ -51,7 +51,7 @@ namespace Bibliotek
 
         }
 
-        private static void LoanBookPrompt(Bibliotek bib)
+        private static void LoanBookPrompt(Bibliotek bib) //Prompt brugt for at laan en bog
         {
           
             Console.Write(bib.UdskrivBoger());
@@ -59,13 +59,13 @@ namespace Bibliotek
             Console.WriteLine("Indast ISBN af bogen du vil gerne lan: ");
             string isbnStr = Console.ReadLine();
 
-            Book toLoan = bib.FindBook(isbnStr);
-            if (toLoan == null)
+            Book toLoan = bib.FindBook(isbnStr); //returnerer null hvis bogen med valgt isbn nummer kunne ikke findes i bibliotek objektet,
+            if (toLoan == null)                  //ellers returnerer den bogen fra bibliotekens liste som matcher isbn nummeret
                 Console.WriteLine("\nBogen med dette ISBN kunne ikke findes.\n");
-            else
+            else //hvis bogen findes
             {
                 bool lan = false;
-                while (!lan)
+                while (!lan) //prompt som kores indtil brugeren har indastet en int
                 {
                     Console.WriteLine("Indast en laaner nr.: ");
                     string lanStr = Console.ReadLine();
@@ -74,17 +74,17 @@ namespace Bibliotek
                     if(Int32.TryParse(lanStr, out lanId))
                     {
                         lan = true;
-                        if(bib.HentLaaner(lanId) != "Ikke fundet")
+                        if(bib.HentLaaner(lanId) != "Ikke fundet") //tjekker hvis dette laaner id findes i biblioteket
                         {
                             string msg = bib.LoanBook(toLoan, lanId) is true ? "Successfully loaned the book" : "failed to loan the book.";
-                            Console.WriteLine(msg);
+                            Console.WriteLine(msg); //en sidst redundant tjek, LoanBook() returnerer true hvis en laan er udford sucessfuld
                         }
                     }
                 }
             }
         }
 
-        static int BibliotekPrompt()
+        static int BibliotekPrompt() //Opstart prompt med menuen
         {
             //Console.Clear();
             int valg = -1;
@@ -108,18 +108,24 @@ namespace Bibliotek
                 if (Int32.TryParse(strValg, out valg))
                 {
                     if (valg < 1 || valg > 6)
+                    {
+                        Console.Clear();
                         Console.WriteLine("Uglydig mulighed. Prov igen.");
+                    }
 
                     else
                         choice = true;
                 }
                 else
+                {
+                    Console.Clear();
                     Console.WriteLine("Uglydig mulighed. Prov igen.");
+                }
             }
             return valg;
         }
 
-        static void OpretNyLaanerPrompt(Bibliotek bib)
+        static void OpretNyLaanerPrompt(Bibliotek bib) //Propmt for at tilfoj en ny laaner i biblioteket
         {
             bool valueInputted = false;
 
@@ -137,7 +143,7 @@ namespace Bibliotek
                 int num = -1;
                 if (Int32.TryParse(numStr, out num))
                 {
-                    OutputMessage(bib.OpretLaaner(num, navn, email));
+                    OutputMessage(bib.OpretLaaner(num, navn, email)); //Opret laaner returnerer en string med en besked
                     valueInputted = true;
                 }
                 else Console.WriteLine("Ugyldig mulighed. Du skal indtaste kun en tal.");
