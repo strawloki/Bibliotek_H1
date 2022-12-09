@@ -89,7 +89,7 @@ namespace Bibliotek
             //Console.Clear();
             int valg = -1;
             bool choice = false;
-            while (!choice)
+            while (!choice) //kores indtil brugeren har indtastet en mulighed(int) som passer
             {
                 Console.Write("---------------------------------------------------\n");
                 Console.Write("Velkommen til bibliotekens program. Du kan vaelge folgende:\n");
